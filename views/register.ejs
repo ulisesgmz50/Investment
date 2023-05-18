@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="resources/css/styles.css"/>
+
+    <title>Singup</title>
+</head>
+<body>
+    <div class="singup-form">
+        <h1>Sing up</h1>
+        <form action="register" method="POST">
+            <label for="">User name</label>
+            <input type="text" name="user" id="user"  required>
+            <label for="">Password</label>
+            <input type="password" name="pass" id="password" required>
+            <label for="">balance</label>
+            <input type="number" name="balance" id="balance" required>
+            <a href="/">Cancel</a>
+            <input type="submit" name="btn-singup" id="singup" value="singup">
+        </form>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <% if (typeof alert != "undefined") { %>
+        <script type="text/javascript">
+            Swal.fire({
+                title: '<%=alertTitle%>',
+                text: '<%=alertMessage%>',
+                icon: '<%=alertIcon%>',
+                showConfirmButton: <%=showConfirmButton%>,
+                timer: <%=timer%>,
+            }).then(()=>{
+                window.location='/<%= ruta %>'
+            })
+            </script>
+            <%}%>
+</body>
+</html>

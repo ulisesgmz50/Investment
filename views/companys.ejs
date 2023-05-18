@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="resources/css/styles.css"/>
+        <title>Companys</title>
+    </head>
+    <body>
+        <div>
+            <h1> Inversiones </h1>
+                <% if (login) { %>
+                    <h2>Usuario conectado: <strong><%= name %></strong> </br>Saldo: <strong><%= balance %></strong></h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Company</th>
+                                <th>Limite</th>
+                                <th>Actualmente invertido</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (data) {%>
+                                <% for(var i=0; i<data.length; i++) {%>
+                                    <tr>
+                                        <td><%= data[i].ID %></td>
+                                        <td><%= data[i].companyname %></td>
+                                        <td><%= data[i].investtotal %></td>
+                                        <td><%= data[i].investedtotal %></td>
+                                    </tr>
+                                    <% } %>
+                                    <% } %>
+        </tbody>
+    </table>    
+
+
+<div class="invest-form">
+    <h1>Invest</h1>
+        <form action="/companysvalidation" method="POST">
+            <label for="">User</label>
+            <input type="text" name="user" value="<%= name %>" disabled>
+            <label for="">Balance</label>
+            <input type="number" name="balance" value="<%= balance %>" disabled>
+            <label for="">Company ID</label>
+            <input type="number" name="CompanyID" required>
+            <label for="">Amount</label>
+            <input type="number" name="amount" required>
+            <input type="submit" name="btn-invest" value="Invest!">
+        </form>
+    </div>
+    <a href="logout">Log-out</a>
+    
+    
+    <% }else{  %>
+        <h2> <strong><%= name %></strong></h2>
+        <a href="login">Log-in</a>
+        <%}  %>
+        
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<% if (typeof alert != "undefined") { %>
+    <script type="text/javascript">
+        Swal.fire({
+            title: '<%=alertTitle%>',
+            text: '<%=alertMessage%>',
+            icon: '<%=alertIcon%>',
+            showConfirmButton: <%=showConfirmButton%>,
+            timer: <%=timer%>,
+        }).then(()=>{
+            window.location='/<%= ruta %>'
+        })
+        </script>
+            <%}%>
+        </body>
+        </html>
